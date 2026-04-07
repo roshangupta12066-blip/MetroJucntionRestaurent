@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Metro Junction Restaurant | Ghazipur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal: #00b8a9;
+    --teal-dark: #007a70;
+    --gold: #f5c842;
+    --dark: #0d1117;
+    --dark2: #161b22;
+    --dark3: #1e2530;
+    --light: #e8f4f2;
+    --white: #ffffff;
+    --gray: #8b9ab0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--dark);
+    color: var(--light);
+    font-family: 'Nunito', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ── NAVBAR ── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 1000;
+    background: rgba(13,17,23,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 2px solid var(--teal);
+    padding: 14px 5%;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.7rem;
+    color: var(--teal);
+    letter-spacing: 3px;
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a {
+    color: var(--light); text-decoration: none;
+    font-size: 0.85rem; font-weight: 600; letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--teal); }
+  .nav-cta {
+    background: var(--teal); color: var(--dark) !important;
+    padding: 8px 20px; border-radius: 4px;
+    font-weight: 700 !important;
+  }
+  .hamburger {
+    display: none; flex-direction: column; gap: 5px; cursor: pointer;
+  }
+  .hamburger span {
+    width: 24px; height: 2px; background: var(--teal);
+    transition: 0.3s;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--dark);
+    display: flex; align-items: center; justify-content: center;
+    text-align: center;
+    padding: 100px 5% 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at center, rgba(0,184,169,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  /* Track lines */
+  .track-lines {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 120px; pointer-events: none; overflow: hidden;
+  }
+  .track-lines svg { width: 100%; height: 100%; }
+
+  .hero-tag {
+    display: inline-block;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.75rem; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--teal); border: 1px solid var(--teal);
+    padding: 5px 16px; border-radius: 20px;
+    margin-bottom: 24px;
+    animation: fadeUp 0.8s ease both;
+  }
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3.5rem, 10vw, 8rem);
+    line-height: 0.9;
+    letter-spacing: 4px;
+    color: var(--white);
+    animation: fadeUp 0.9s 0.1s ease both;
+  }
+  .hero h1 .accent { color: var(--teal); }
+  .hero-tagline {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(1.1rem, 3vw, 1.6rem);
+    color: var(--gold);
+    margin: 18px 0 10px;
+    animation: fadeUp 1s 0.2s ease both;
+  }
+  .hero-sub {
+    color: var(--gray); font-size: 0.9rem;
+    margin-bottom: 36px;
+    animation: fadeUp 1s 0.3s ease both;
+  }
+  .hero-btns {
+    display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+    animation: fadeUp 1s 0.4s ease both;
+  }
+  .btn-primary {
+    background: var(--teal); color: var(--dark);
+    padding: 14px 32px; border-radius: 6px;
+    font-weight: 700; font-size: 0.9rem; letter-spacing: 1px;
+    text-decoration: none; transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,184,169,0.4); }
+  .btn-outline {
+    border: 2px solid var(--teal); color: var(--teal);
+    padding: 12px 30px; border-radius: 6px;
+    font-weight: 700; font-size: 0.9rem; letter-spacing: 1px;
+    text-decoration: none; transition: all 0.3s;
+  }
+  .btn-outline:hover { background: var(--teal); color: var(--dark); }
+
+  .hero-badges {
+    display: flex; gap: 24px; justify-content: center; flex-wrap: wrap;
+    margin-top: 44px;
+    animation: fadeUp 1s 0.5s ease both;
+  }
+  .badge { text-align: center; }
+  .badge .num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem; color: var(--teal); display: block;
+  }
+  .badge .lbl { font-size: 0.72rem; color: var(--gray); letter-spacing: 2px; text-transform: uppercase; }
+
+  /* ── SECTION COMMON ── */
+  section { padding: 80px 5%; }
+  .section-label {
+    font-size: 0.72rem; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--teal); font-weight: 700; margin-bottom: 10px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-label::after {
+    content: ''; flex: 1; max-width: 60px;
+    height: 1px; background: var(--teal);
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    letter-spacing: 2px; color: var(--white); line-height: 1;
+    margin-bottom: 16px;
+  }
+  .section-title span { color: var(--teal); }
+
+  /* ── ABOUT ── */
+  .about { background: var(--dark2); }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 60px; align-items: center;
+    max-width: 1100px; margin: 0 auto;
+  }
+  .about-text p {
+    color: var(--gray); line-height: 1.8;
+    margin-bottom: 16px; font-size: 0.95rem;
+  }
+  .about-features {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 16px; margin-top: 28px;
+  }
+  .feat {
+    background: var(--dark3);
+    border: 1px solid rgba(0,184,169,0.2);
+    border-radius: 10px; padding: 16px;
+    transition: border-color 0.3s;
+  }
+  .feat:hover { border-color: var(--teal); }
+  .feat-icon { font-size: 1.6rem; margin-bottom: 6px; }
+  .feat h4 { font-size: 0.85rem; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+  .feat p { font-size: 0.78rem; color: var(--gray); }
+
+  .about-visual {
+    position: relative;
+  }
+  .about-img-stack {
+    position: relative; height: 420px;
+  }
+  .about-img-stack img {
+    position: absolute; border-radius: 12px;
+    object-fit: cover;
+  }
+  .img-main {
+    width: 80%; height: 320px; top: 0; right: 0;
+    border: 3px solid var(--teal);
+  }
+  .img-secondary {
+    width: 58%; height: 220px; bottom: 0; left: 0;
+    border: 3px solid var(--gold);
+    z-index: 2;
+  }
+  .about-badge-float {
+    position: absolute; top: 10px; left: -10px;
+    background: var(--gold); color: var(--dark);
+    padding: 10px 16px; border-radius: 8px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.85rem; letter-spacing: 2px;
+    z-index: 3;
+    box-shadow: 0 8px 24px rgba(245,200,66,0.4);
+  }
+
+  /* ── TRAIN DIVIDER ── */
+  .train-divider {
+    background: var(--dark3);
+    padding: 28px 5%;
+    border-top: 1px solid rgba(0,184,169,0.2);
+    border-bottom: 1px solid rgba(0,184,169,0.2);
+    overflow: hidden;
+  }
+  .track-container {
+    position: relative; height: 40px;
+  }
+  .track-rail {
+    position: absolute; bottom: 8px; left: 0; right: 0;
+    height: 4px; background: repeating-linear-gradient(
+      to right, var(--teal) 0, var(--teal) 20px, transparent 20px, transparent 30px
+    );
+  }
+  .track-train {
+    position: absolute; bottom: 12px; left: -120px;
+    font-size: 1.8rem;
+    animation: trainRide 8s linear infinite;
+  }
+  @keyframes trainRide {
+    from { left: -120px; }
+    to { left: 110%; }
+  }
+
+  /* ── MENU ── */
+  .menu { background: var(--dark); }
+  .menu-tabs {
+    display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 40px;
+  }
+  .menu-tab {
+    padding: 10px 24px; border-radius: 30px;
+    border: 2px solid rgba(0,184,169,0.3);
+    background: transparent; color: var(--gray);
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.85rem; font-weight: 700;
+    letter-spacing: 1px; cursor: pointer;
+    transition: all 0.3s;
+  }
+  .menu-tab.active, .menu-tab:hover {
+    background: var(--teal); border-color: var(--teal);
+    color: var(--dark);
+  }
+  .menu-section { display: none; }
+  .menu-section.active { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
+  .menu-card {
+    background: var(--dark2);
+    border: 1px solid rgba(0,184,169,0.15);
+    border-radius: 12px; padding: 20px;
+    transition: all 0.3s; position: relative; overflow: hidden;
+  }
+  .menu-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--teal), var(--gold));
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .menu-card:hover { transform: translateY(-4px); border-color: var(--teal); }
+  .menu-card:hover::before { transform: scaleX(1); }
+  .menu-card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+  .menu-name { font-weight: 700; font-size: 0.95rem; color: var(--white); flex: 1; }
+  .menu-price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem; color: var(--gold);
+    letter-spacing: 1px;
+  }
+  .menu-desc { font-size: 0.78rem; color: var(--gray); line-height: 1.5; }
+  .menu-veg {
+    display: inline-block; width: 10px; height: 10px;
+    border-radius: 50%; margin-right: 6px;
+    vertical-align: middle;
+  }
+  .veg { background: #3ddc84; }
+  .nonveg { background: #e74c3c; }
+
+  /* ── GALLERY ── */
+  .gallery { background: var(--dark2); }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto auto;
+    gap: 12px;
+    max-width: 1100px; margin: 40px auto 0;
+  }
+  .gal-item {
+    border-radius: 10px; overflow: hidden;
+    position: relative;
+  }
+  .gal-item img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.5s;
+    display: block;
+  }
+  .gal-item:hover img { transform: scale(1.05); }
+  .gal-item:nth-child(1) { grid-column: span 2; grid-row: span 1; height: 260px; }
+  .gal-item:nth-child(2) { height: 260px; }
+  .gal-item:nth-child(3) { height: 260px; }
+  .gal-item:nth-child(4) { grid-column: span 2; height: 220px; }
+  .gal-item:nth-child(5) { height: 220px; }
+  .gal-item:nth-child(6) { height: 220px; }
+
+  /* ── REVIEWS ── */
+  .reviews { background: var(--dark); }
+  .reviews-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px; margin-top: 40px;
+  }
+  .review-card {
+    background: var(--dark2);
+    border: 1px solid rgba(0,184,169,0.15);
+    border-radius: 14px; padding: 24px;
+    transition: border-color 0.3s;
+  }
+  .review-card:hover { border-color: var(--teal); }
+  .review-stars { color: var(--gold); font-size: 1rem; margin-bottom: 12px; }
+  .review-text {
+    font-size: 0.88rem; color: var(--gray);
+    line-height: 1.7; margin-bottom: 16px;
+    font-style: italic;
+  }
+  .review-footer { display: flex; justify-content: space-between; align-items: center; }
+  .reviewer-name { font-weight: 700; font-size: 0.85rem; color: var(--white); }
+  .review-scores {
+    display: flex; gap: 8px;
+  }
+  .score-pill {
+    background: rgba(0,184,169,0.15);
+    border: 1px solid rgba(0,184,169,0.3);
+    border-radius: 20px; padding: 2px 10px;
+    font-size: 0.7rem; color: var(--teal); font-weight: 600;
+  }
+
+  /* ── MAP + CONTACT ── */
+  .contact { background: var(--dark2); }
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 50px; align-items: start;
+    max-width: 1100px; margin: 40px auto 0;
+  }
+  .contact-info { }
+  .contact-item {
+    display: flex; gap: 16px; align-items: flex-start;
+    margin-bottom: 24px;
+    padding: 20px;
+    background: var(--dark3);
+    border-radius: 10px;
+    border-left: 3px solid var(--teal);
+  }
+  .ci-icon { font-size: 1.5rem; flex-shrink: 0; }
+  .ci-label { font-size: 0.72rem; color: var(--teal); letter-spacing: 2px; text-transform: uppercase; font-weight: 700; }
+  .ci-val { font-size: 0.9rem; color: var(--light); margin-top: 4px; line-height: 1.5; }
+  .ci-val a { color: var(--light); text-decoration: none; }
+  .ci-val a:hover { color: var(--teal); }
+  .map-frame {
+    border-radius: 14px; overflow: hidden;
+    border: 2px solid rgba(0,184,169,0.3);
+    height: 100%; min-height: 380px;
+  }
+  .map-frame iframe { width: 100%; height: 100%; min-height: 380px; border: none; }
+
+  .wa-btn {
+    display: flex; align-items: center; gap: 10px;
+    background: #25d366; color: #fff;
+    padding: 14px 28px; border-radius: 8px;
+    font-weight: 700; font-size: 0.9rem;
+    text-decoration: none; width: fit-content;
+    transition: transform 0.3s, box-shadow 0.3s;
+    margin-top: 8px;
+  }
+  .wa-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(37,211,102,0.4); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark3);
+    border-top: 2px solid var(--teal);
+    padding: 36px 5%;
+    text-align: center;
+  }
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem; color: var(--teal); letter-spacing: 4px;
+  }
+  .footer-logo span { color: var(--gold); }
+  .footer-sub { color: var(--gray); font-size: 0.82rem; margin: 10px 0 16px; }
+  .footer-links { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; }
+  .footer-links a { color: var(--gray); font-size: 0.8rem; text-decoration: none; transition: color 0.3s; }
+  .footer-links a:hover { color: var(--teal); }
+  .footer-copy { color: var(--gray); font-size: 0.75rem; border-top: 1px solid rgba(255,255,255,0.07); padding-top: 16px; margin-top: 10px; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 768px) {
+    .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: var(--dark2); padding: 20px; gap: 16px; border-bottom: 2px solid var(--teal); }
+    .nav-links.open { display: flex; }
+    .hamburger { display: flex; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; }
+    .about-img-stack { height: 280px; }
+    .img-main { width: 90%; height: 220px; }
+    .img-secondary { width: 60%; height: 160px; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
+    .gal-item:nth-child(1) { grid-column: span 2; height: 200px; }
+    .gal-item:nth-child(4) { grid-column: span 2; }
+    .gal-item { height: 160px !important; }
+    .hero h1 { font-size: 3.5rem; }
+    .about-features { grid-template-columns: 1fr; }
+    .menu-section.active { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">METRO <span>JUNCTION</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#contact" class="nav-cta">Reserve</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div>
+    <div class="hero-tag">🚂 Ghazipur's Finest Train-Themed Dining</div>
+    <h1>METRO<br><span class="accent">JUNCTION</span></h1>
+    <p class="hero-tagline">"Nahi hai? Khud se Bana Lena."</p>
+    <p class="hero-sub">Gate No. 3, Lanka, Ghazipur &nbsp;•&nbsp; Open All Week: 11 AM – 11 PM</p>
+    <div class="hero-btns">
+      <a href="https://wa.me/918005151801?text=Hello%2C%20I'd%20like%20to%20book%20a%20table%20at%20Metro%20Junction!" class="btn-primary" target="_blank">📲 Book a Table</a>
+      <a href="#menu" class="btn-outline">View Menu</a>
+    </div>
+    <div class="hero-badges">
+      <div class="badge"><span class="num">500+</span><span class="lbl">Happy Guests</span></div>
+      <div class="badge"><span class="num">4.6★</span><span class="lbl">Avg Rating</span></div>
+      <div class="badge"><span class="num">3</span><span class="lbl">Unique Sections</span></div>
+      <div class="badge"><span class="num">12H</span><span class="lbl">Open Daily</span></div>
+    </div>
+  </div>
+  <div class="track-lines">
+    <svg viewBox="0 0 1400 120" preserveAspectRatio="none">
+      <line x1="0" y1="60" x2="1400" y2="60" stroke="#00b8a9" stroke-width="3" stroke-dasharray="20,12"/>
+      <line x1="0" y1="80" x2="1400" y2="80" stroke="#00b8a9" stroke-width="3" stroke-dasharray="20,12"/>
+      <!-- sleepers -->
+      <line x1="50" y1="55" x2="50" y2="85" stroke="#007a70" stroke-width="6"/>
+      <line x1="110" y1="55" x2="110" y2="85" stroke="#007a70" stroke-width="6"/>
+      <line x1="170" y1="55" x2="170" y2="85" stroke="#007a70" stroke-width="6"/>
+      <line x1="230" y1="55" x2="230" y2="85" stroke="#007a70" stroke-width="6"/>
+      <line x1="290" y1="55" x2="290" y2="85" stroke="#007a70" stroke-width="6"/>
+      <line x1="350" y1="55" x2="350" y2="85" stroke="#007a70" stroke-width="6"/>
+      <line x1="410" y1="55" x2="410" y2="85" stroke="#007a70" stroke-width="6"/>
+      <line x1="470" y1="55" x2="470" y2="85" stroke="#007a70" stroke-width="6"/>
+      <line x1="530" y1="55" x2="530" y2="85" stroke="#007a70" stroke-width="6"/>
+      <line x1="590" y1="55" x2="590" y2="85" stroke="#007a70" stroke-width="6"/>
+      <line x1="650" y1="55" x2="650" y2="85" stroke="#007a70" stroke-width="6"/>
+      <line x1="710" y1="55" x2="710" y2="85" stroke="#007a70" stroke-width="6"/>
+      <line x1="770" y1="55" x2="770" y2="85" stroke="#007a70" stroke-width="6"/>
+      <line x1="830" y1="55" x2="830" y2="85" stroke="#007a70" stroke-width="6"/>
+      <line x1="890" y1="55" x2="890" y2="85" stroke="#007a70" stroke-width="6"/>
+      <line x1="950" y1="55" x2="950" y2="85" stroke="#007a70" stroke-width="6"/>
+      <line x1="1010" y1="55" x2="1010" y2="85" stroke="#007a70" stroke-width="6"/>
+      <line x1="1070" y1="55" x2="1070" y2="85" stroke="#007a70" stroke-width="6"/>
+      <line x1="1130" y1="55" x2="1130" y2="85" stroke="#007a70" stroke-width="6"/>
+      <line x1="1190" y1="55" x2="1190" y2="85" stroke="#007a70" stroke-width="6"/>
+      <line x1="1250" y1="55" x2="1250" y2="85" stroke="#007a70" stroke-width="6"/>
+      <line x1="1310" y1="55" x2="1310" y2="85" stroke="#007a70" stroke-width="6"/>
+      <line x1="1370" y1="55" x2="1370" y2="85" stroke="#007a70" stroke-width="6"/>
+    </svg>
+  </div>
+</section>
+
+<!-- TRAIN DIVIDER -->
+<div class="train-divider">
+  <div class="track-container">
+    <div class="track-rail"></div>
+    <div class="track-train">🚂</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-grid">
+    <div class="about-text">
+      <div class="section-label">Our Story</div>
+      <h2 class="section-title">A Dining <span>Experience</span> Unlike Any Other</h2>
+      <p>Metro Junction is not just a restaurant — it's a journey. Nestled in the heart of Ghazipur, we bring you a one-of-a-kind dining experience where your food arrives via a miniature train running right through the restaurant.</p>
+      <p>From the plush green velvet seating to the dramatic train-track table runners and chandelier-lit ceiling, every corner of Metro Junction tells a story. Whether you're here for a family meal, a date, or a birthday celebration — this place turns dining into a memory.</p>
+      <div class="about-features">
+        <div class="feat">
+          <div class="feat-icon">🚂</div>
+          <h4>Train Food Delivery</h4>
+          <p>Food served via miniature railway — Ghazipur ka pehla!</p>
+        </div>
+        <div class="feat">
+          <div class="feat-icon">🎉</div>
+          <h4>Party Bookings</h4>
+          <p>Birthday parties, kitty parties & private events</p>
+        </div>
+        <div class="feat">
+          <div class="feat-icon">🛋️</div>
+          <h4>Cozy Ambiance</h4>
+          <p>Velvet booths, chandeliers & warm lighting</p>
+        </div>
+        <div class="feat">
+          <div class="feat-icon">🍽️</div>
+          <h4>Diverse Cuisine</h4>
+          <p>Indian, South Indian & dessert sections</p>
+        </div>
+      </div>
+    </div>
+    <div class="about-visual">
+      <div class="about-img-stack">
+        <div class="about-badge-float">🚂 ICONIC SINCE DAY 1</div>
+        <img class="img-main" src="Metro_3.jpg" alt="Interior" onerror="this.style.background='#1e2530';this.style.display='block'">
+        <img class="img-secondary" src="Metro_1.jpg" alt="Milkshake" onerror="this.style.background='#1e2530';this.style.display='block'">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="menu" id="menu">
+  <div class="section-label">Food Menu</div>
+  <h2 class="section-title">All Aboard the <span>Flavour Train</span></h2>
+  <div class="menu-tabs">
+    <button class="menu-tab active" onclick="switchTab('indian', this)">🍛 Indian Junction</button>
+    <button class="menu-tab" onclick="switchTab('south', this)">🥞 South Indian Junction</button>
+    <button class="menu-tab" onclick="switchTab('ice', this)">🍦 Ice Cream Junction</button>
+  </div>
+
+  <!-- Indian Junction -->
+  <div class="menu-section active" id="tab-indian">
+    <div class="menu-card">
+      <div class="menu-card-top">
+        <span class="menu-name"><span class="menu-veg veg"></span>Dal Makhani</span>
+        <span class="menu-price">₹180</span>
+      </div>
+      <p class="menu-desc">Slow-cooked black lentils in rich buttery tomato gravy, best paired with naan.</p>
+    </div>
+    <div class="menu-card">
+      <div class="menu-card-top">
+        <span class="menu-name"><span class="menu-veg veg"></span>Paneer Butter Masala</span>
+        <span class="menu-price">₹210</span>
+      </div>
+      <p class="menu-desc">Soft cottage cheese cubes in a velvety, mildly spiced tomato-butter sauce.</p>
+    </div>
+    <div class="menu-card">
+      <div class="menu-card-top">
+        <span class="menu-name"><span class="menu-veg veg"></span>Veg Biryani</span>
+        <span class="menu-price">₹200</span>
+      </div>
+      <p class="menu-desc">Fragrant basmati rice layered with seasonal vegetables and aromatic whole spices.</p>
+    </div>
+    <div class="menu-card">
+      <div class="menu-card-top">
+        <span class="menu-name"><span class="menu-veg nonveg"></span>Chicken Curry</span>
+        <span class="menu-price">₹260</span>
+      </div>
+      <p class="menu-desc">Home-style chicken cooked in a bold, rustic masala — just like dadi banati hain.</p>
+    </div>
+    <div class="menu-card">
+      <div class="menu-card-top">
+        <span class="menu-name"><span class="menu-veg nonveg"></span>Mutton Rogan Josh</span>
+        <span class="menu-price">₹320</span>
+      </div>
+      <p class="menu-desc">Tender mutton slow-cooked in Kashmiri spices, aromatic and deeply flavorful.</p>
+    </div>
+  </div>
+
+  <!-- South Indian Junction -->
+  <div class="menu-section" id="tab-south">
+    <div class="menu-card">
+      <div class="menu-card-top">
+        <span class="menu-name"><span class="menu-veg veg"></span>Masala Dosa</span>
+        <span class="menu-price">₹130</span>
+      </div>
+      <p class="menu-desc">Crispy golden crepe stuffed with spiced potato filling, served with sambhar & chutney.</p>
+    </div>
+    <div class="menu-card">
+      <div class="menu-card-top">
+        <span class="menu-name"><span class="menu-veg veg"></span>Idli Sambhar</span>
+        <span class="menu-price">₹100</span>
+      </div>
+      <p class="menu-desc">Soft steamed rice cakes served with hot lentil sambhar and coconut chutney.</p>
+    </div>
+    <div class="menu-card">
+      <div class="menu-card-top">
+        <span class="menu-name"><span class="menu-veg veg"></span>Medu Vada</span>
+        <span class="menu-price">₹110</span>
+      </div>
+      <p class="menu-desc">Crispy fried lentil donuts with a fluffy interior — a South Indian classic.</p>
+    </div>
+    <div class="menu-card">
+      <div class="menu-card-top">
+        <span class="menu-name"><span class="menu-veg veg"></span>Uttapam</span>
+        <span class="menu-price">₹140</span>
+      </div>
+      <p class="menu-desc">Thick rice-lentil pancake topped with onion, tomato and green chillies.</p>
+    </div>
+    <div class="menu-card">
+      <div class="menu-card-top">
+        <span class="menu-name"><span class="menu-veg veg"></span>Rava Dosa</span>
+        <span class="menu-price">₹150</span>
+      </div>
+      <p class="menu-desc">Thin, lacy semolina dosa with a satisfying crunch — quick and delicious.</p>
+    </div>
+  </div>
+
+  <!-- Ice Cream Junction -->
+  <div class="menu-section" id="tab-ice">
+    <div class="menu-card">
+      <div class="menu-card-top">
+        <span class="menu-name"><span class="menu-veg veg"></span>Chocolate Sundae</span>
+        <span class="menu-price">₹160</span>
+      </div>
+      <p class="menu-desc">Layers of chocolate ice cream, hot fudge, whipped cream and a cherry on top.</p>
+    </div>
+    <div class="menu-card">
+      <div class="menu-card-top">
+        <span class="menu-name"><span class="menu-veg veg"></span>Strawberry Delight</span>
+        <span class="menu-price">₹150</span>
+      </div>
+      <p class="menu-desc">Fresh strawberry ice cream topped with real fruit coulis and wafer crumble.</p>
+    </div>
+    <div class="menu-card">
+      <div class="menu-card-top">
+        <span class="menu-name"><span class="menu-veg veg"></span>Mango Bliss</span>
+        <span class="menu-price">₹150</span>
+      </div>
+      <p class="menu-desc">Alphonso mango flavoured ice cream — mithaas bilkul asli aam jaise.</p>
+    </div>
+    <div class="menu-card">
+      <div class="menu-card-top">
+        <span class="menu-name"><span class="menu-veg veg"></span>Butterscotch Royale</span>
+        <span class="menu-price">₹160</span>
+      </div>
+      <p class="menu-desc">Creamy butterscotch with caramel drizzle and crunchy praline bits.</p>
+    </div>
+    <div class="menu-card">
+      <div class="menu-card-top">
+        <span class="menu-name"><span class="menu-veg veg"></span>Choco Milkshake</span>
+        <span class="menu-price">₹120</span>
+      </div>
+      <p class="menu-desc">Thick, cold chocolate milkshake with chocolate drizzle — as seen in our signature glass!</p>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <div class="section-label">Gallery</div>
+  <h2 class="section-title">Inside the <span>Junction</span></h2>
+  <div class="gallery-grid">
+    <div class="gal-item"><img src="Metro_3.jpg" alt="Restaurant Interior"></div>
+    <div class="gal-item"><img src="Metro_1.jpg" alt="Milkshake"></div>
+    <div class="gal-item"><img src="Metro_2.jpg" alt="Cold Coffee"></div>
+    <div class="gal-item"><img src="Metro_3.jpg" alt="Dining Area"></div>
+    <div class="gal-item"><img src="Metro_4.jpg" alt="Metro Junction Exterior"></div>
+    <div class="gal-item"><img src="Metro_2.jpg" alt="Beverages"></div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews" id="reviews">
+  <div class="section-label">Guest Reviews</div>
+  <h2 class="section-title">What Guests <span>Say</span></h2>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="review-stars">★★★★☆</div>
+      <p class="review-text">"It's a good restaurant to visit. The food was good, the place is cozy, moderately priced, and a different experience altogether."</p>
+      <div class="review-footer">
+        <div class="reviewer-name">— Ajay Yadav</div>
+        <div class="review-scores">
+          <span class="score-pill">Food 4/5</span>
+          <span class="score-pill">Atm 4/5</span>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Excellent service and outstanding food quality! Authentic, fresh flavors with phenomenal presentation and flawless, attentive staff. Truly a premium experience."</p>
+      <div class="review-footer">
+        <div class="reviewer-name">— Anjali</div>
+        <div class="review-scores">
+          <span class="score-pill">Food 5/5</span>
+          <span class="score-pill">Service 5/5</span>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Metro Junction offers a unique and fascinating dining experience with its train service food system. The miniature train delivery is both entertaining and innovative — a must-visit!"</p>
+      <div class="review-footer">
+        <div class="reviewer-name">— Vikas Jaiswal</div>
+        <div class="review-scores">
+          <span class="score-pill">Food 4/5</span>
+          <span class="score-pill">Service 5/5</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT + MAP -->
+<section class="contact" id="contact">
+  <div class="section-label">Find Us</div>
+  <h2 class="section-title">Visit the <span>Station</span></h2>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <div class="contact-item">
+        <div class="ci-icon">📍</div>
+        <div>
+          <div class="ci-label">Address</div>
+          <div class="ci-val">Gate No. 3, Varanasi–Gorakhpur Highway,<br>Nauka Pura, Lanka, Ghazipur,<br>Uttar Pradesh – 233001</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="ci-icon">⏰</div>
+        <div>
+          <div class="ci-label">Timings</div>
+          <div class="ci-val">11:00 AM – 11:00 PM<br>Open All 7 Days</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="ci-icon">📞</div>
+        <div>
+          <div class="ci-label">Phone & WhatsApp</div>
+          <div class="ci-val"><a href="tel:+918005151801">+91 80051 51801</a></div>
+        </div>
+      </div>
+      <a href="https://wa.me/918005151801?text=Hello%2C%20I'd%20like%20to%20book%20a%20table%20at%20Metro%20Junction!" target="_blank" class="wa-btn">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Book Table on WhatsApp
+      </a>
+    </div>
+    <div class="map-frame">
+      <iframe
+        src="https://maps.google.com/maps?q=25.5835,83.5677&z=15&output=embed"
+        allowfullscreen="" loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Metro Junction Location">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">METRO <span>JUNCTION</span></div>
+  <p class="footer-sub">Ghazipur's Most Unique Dining Destination 🚂</p>
+  <div class="footer-links">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#menu">Menu</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <p class="footer-copy">© 2025 Metro Junction Restaurant, Ghazipur. All rights reserved.</p>
+</footer>
+
+<script>
+  // Navbar toggle
+  function toggleNav() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+
+  // Menu tabs
+  function switchTab(tab, btn) {
+    document.querySelectorAll('.menu-section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.menu-tab').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + tab).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  // Navbar scroll
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('navbar');
+    if (window.scrollY > 60) {
+      nav.style.background = 'rgba(13,17,23,0.98)';
+    } else {
+      nav.style.background = 'rgba(13,17,23,0.92)';
+    }
+  });
+
+  // Fade in on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.menu-card, .review-card, .feat, .contact-item').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
