@@ -454,7 +454,7 @@ footer{
       <span class="gold">JUNCTION</span>
     </h1>
     <div class="hero-divider"><span>Ghazipur · UP · Since 2023</span></div>
-    <p class="hero-tagline">"Nahi Hai? Khud Se Bana Lena."</p>
+    <p class="hero-tagline">Good food, good mood</p>
     <p class="hero-sub">Gate No. 3, Lanka, Ghazipur &nbsp;·&nbsp; 11 AM – 11 PM · All Week</p>
     <div class="hero-btns">
       <a href="https://wa.me/918005151801?text=Table%20book%20karni%20hai%20Metro%20Junction%20mein" class="btn-gold" target="_blank">📲 &nbsp;Book a Table</a>
